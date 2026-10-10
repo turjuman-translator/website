@@ -1,0 +1,16 @@
+/*
+ * The website. Brand tokens and fonts come from web/shared/brand.css (one source with the app);
+ * light only. The page mirrors on the Arabic page through logical properties, while the demos
+ * stay left to right inside, like the screens they show. The real caption CSS is added at build
+ * time, scoped under .capdemo-stage.
+ */
+@import "../../web/shared/brand.css";
+@import "../../web/fonts.css";
+@import "./fonts.css";
+@import "./base.css";
+@import "./hero.css";
+@import "./board.css";
+@import "./sections.css";
+@import "./capdemo.css";
+@import "./doc.css";
+@import "site:caption.css";

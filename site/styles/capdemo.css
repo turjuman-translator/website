@@ -1,0 +1,209 @@
+/* --- your screens, your style: the real caption page in a 16:9 frame -------------------- */
+.cd {
+  display: grid;
+  gap: 16px;
+}
+
+/* The ten themes: two even rows of five; narrower, one row that scrolls sideways. */
+.cd-chips {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  justify-content: start;
+  gap: 8px;
+  padding: 2px;
+}
+
+@media (max-width: 899px) {
+  .cd-chips {
+    display: flex;
+    overflow-x: auto;
+    padding-inline-end: 36px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+  }
+
+  :root[dir="rtl"] .cd-chips {
+    -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent);
+    mask-image: linear-gradient(to left, #000 calc(100% - 44px), transparent);
+  }
+}
+
+.cd-chip {
+  flex: none;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--tj-line);
+  border-radius: 999px;
+  background: var(--tj-paper);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.cd-chip:hover {
+  border-color: var(--tj-slate);
+}
+
+.cd-chip[aria-pressed="true"],
+.cd-btn[aria-pressed="true"] {
+  border-color: var(--tj-g800);
+  background: var(--tj-g800);
+  color: #fff;
+}
+
+.capdemo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--tj-r-lg);
+  background: #000;
+  box-shadow:
+    0 0 0 1px rgb(6 28 21 / 8%),
+    0 40px 90px -46px rgb(6 40 30 / 50%);
+}
+
+/* The screen at its real size (a size container, so the caption CSS's vw/vh work as cqw/cqh),
+   scaled to the frame by capdemo.ts (--k). */
+.capdemo-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  container-type: size;
+  transform-origin: 0 0;
+  transform: scale(var(--k, 0.5));
+  transition: background 0.5s var(--tj-io);
+}
+
+/* Inside the stage it is the caption page, not the website: its body's text defaults (web/caption.css)
+   and the browser's content-box sizing, so the caption CSS lays out exactly as on a screen. */
+.capdemo-stage {
+  font:
+    400 16px / normal system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Noto Sans",
+    sans-serif;
+  color: #fff;
+  text-align: start;
+  -webkit-font-smoothing: auto;
+  text-rendering: auto;
+}
+
+.capdemo-stage *,
+.capdemo-stage *::before,
+.capdemo-stage *::after {
+  box-sizing: content-box;
+}
+
+/* What is behind a transparent caption page: a camera picture (OBS), black, white, nothing. */
+.capdemo[data-behind="camera"] .capdemo-stage {
+  background:
+    radial-gradient(42% 55% at 28% 34%, rgb(232 206 150 / 90%), transparent 72%),
+    radial-gradient(38% 52% at 74% 30%, rgb(140 170 150 / 75%), transparent 70%),
+    radial-gradient(60% 40% at 50% 92%, rgb(70 58 40 / 85%), transparent 75%),
+    linear-gradient(180deg, #9c8b6c, #4b4436);
+}
+
+.capdemo[data-behind="black"] .capdemo-stage {
+  background: #000;
+}
+
+.capdemo[data-behind="white"] .capdemo-stage {
+  background: #fff;
+}
+
+.capdemo[data-behind="transparent"] .capdemo-stage {
+  background: repeating-conic-gradient(var(--tj-line) 0 25%, var(--tj-paper) 0 50%) 0 0 / 56px 56px;
+}
+
+.cd-ctl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  font-size: 14px;
+}
+
+.cd-grp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.cd-lbl {
+  margin-inline-end: 4px;
+  color: var(--tj-slate);
+}
+
+.cd-btn {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-sm);
+  background: var(--tj-paper);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.cd-chk {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.cd-chk input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--tj-g700);
+}
+
+.cd-size input {
+  width: 140px;
+  accent-color: var(--tj-g700);
+}
+
+/* A phone: the controls stack, each label above its buttons. */
+@media (max-width: 640px) {
+  .cd-ctl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  .cd-ctl .cd-grp {
+    grid-column: 1 / -1;
+  }
+
+  .cd-grp .cd-lbl {
+    flex-basis: 100%;
+    margin: 0;
+  }
+
+  .cd-size input {
+    flex: 1;
+    width: auto;
+  }
+
+  .cd-btn {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+}

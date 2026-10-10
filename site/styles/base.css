@@ -1,0 +1,646 @@
+:root {
+  color-scheme: light;
+  --gut: clamp(16px, 4vw, 40px);
+  /* words that have not been said yet */
+  --dim: color-mix(in srgb, var(--tj-g800) 16%, var(--tj-line));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--tj-paper);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--tj-paper);
+  color: var(--tj-ink);
+  font: 400 16px / 1.55 var(--tj-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+svg {
+  display: block;
+}
+
+[hidden] {
+  /* biome-ignore lint/complexity/noImportantStyles: hidden must beat component display rules */
+  display: none !important;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--tj-g600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.mono {
+  font-family: var(--tj-mono);
+}
+
+/* visually hidden, still read aloud */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  inset-inline-start: 12px;
+  top: -64px;
+  z-index: 60;
+  padding: 10px 16px;
+  border-radius: var(--tj-r-sm);
+  background: var(--tj-g800);
+  color: #fff;
+  font-weight: 500;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+/* The dot field sits on a fixed canvas behind the page. */
+.dotbg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nav,
+main,
+.foot {
+  position: relative;
+  z-index: 1;
+}
+
+/* The header above the page, so its open menu covers what follows. */
+.nav {
+  z-index: 2;
+}
+
+/* --- nav --------------------------------------------------------------------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 76px;
+}
+
+.wm-link {
+  flex: none;
+  border-radius: var(--tj-r-sm);
+}
+
+.wm {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.wm svg {
+  width: auto;
+  height: 30px;
+}
+
+.wm .tj-wm-lat,
+.wm .tj-wm-ar {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.wm .tj-wm-lat {
+  letter-spacing: -0.015em;
+}
+
+.wm .tj-wm-ar {
+  color: var(--tj-g700);
+}
+
+.wm i {
+  width: 1px;
+  height: 20px;
+  background: var(--tj-line);
+}
+
+/* On the Arabic page the Arabic name comes first and the Latin one takes the colour. */
+:root[lang="ar"] .wm .tj-wm-ar {
+  order: 1;
+  color: var(--tj-ink);
+}
+
+:root[lang="ar"] .wm i {
+  order: 2;
+}
+
+:root[lang="ar"] .wm .tj-wm-lat {
+  order: 3;
+  color: var(--tj-g700);
+}
+
+.links {
+  display: flex;
+  gap: 28px;
+  font-size: 15px;
+  color: var(--tj-slate);
+}
+
+.navr {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 15px;
+}
+
+.langs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.langs a {
+  padding: 4px 7px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--tj-slate);
+}
+
+.langs a[aria-current="page"] {
+  color: var(--tj-ink);
+  font-weight: 500;
+}
+
+.langs .sh {
+  display: none;
+}
+
+.signin {
+  color: var(--tj-slate);
+}
+
+.links a:hover,
+.signin:hover,
+.langs a:hover {
+  color: var(--tj-ink);
+}
+
+/* The page or the section you are on (aria-current, site/render/page.ts). */
+.links a[aria-current],
+.foot a[aria-current="page"] {
+  color: var(--tj-ink);
+  font-weight: 500;
+}
+
+/* --- buttons ----------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--tj-r-md);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s,
+    color 0.2s;
+}
+
+.btn.sm {
+  height: 38px;
+  padding: 0 15px;
+  border-radius: var(--tj-r-sm);
+  font-size: 14.5px;
+}
+
+.btn.primary {
+  background: var(--tj-g800);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: var(--tj-g700);
+}
+
+.btn.secondary {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--tj-line);
+  color: var(--tj-ink);
+}
+
+.btn.secondary:hover {
+  box-shadow: inset 0 0 0 1px var(--tj-slate);
+}
+
+/* --- type -------------------------------------------------------------------------------- */
+.display {
+  margin: 0;
+  font-size: clamp(46px, 7.4vw, 100px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.h2 {
+  margin: 0;
+  font-size: clamp(30px, 3.8vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.h2:lang(ar) {
+  line-height: 1.3;
+}
+
+.lead {
+  margin: 0;
+  max-width: 38ch;
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.45;
+  color: var(--tj-slate);
+  text-wrap: pretty;
+}
+
+.sub {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--tj-slate);
+  text-wrap: pretty;
+}
+
+.trust {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  font-size: 14px;
+  color: var(--tj-slate);
+}
+
+.trust li + li {
+  margin-inline-start: 14px;
+  padding-inline-start: 14px;
+  border-inline-start: 1px solid var(--tj-line);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* --- sections ---------------------------------------------------------------------------- */
+.sec {
+  padding-block: clamp(80px, 11vw, 150px);
+}
+
+.sec + .sec {
+  border-top: 1px solid var(--tj-line);
+}
+
+.sec-head {
+  display: grid;
+  gap: 14px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+
+.sec-head.flush {
+  margin: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+
+/* --- the phone menu (a <details>: no script needed) ------------------------------------- */
+.menu {
+  display: none;
+  position: relative;
+}
+
+.menu > summary {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 38px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-sm);
+  background: var(--tj-paper);
+  color: var(--tj-ink);
+  list-style: none;
+  cursor: pointer;
+}
+
+.menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu[open] > summary {
+  background: var(--tj-stone);
+}
+
+.menu-ic {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.menu-panel {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 8px);
+  z-index: 50;
+  display: grid;
+  gap: 2px;
+  min-width: 232px;
+  padding: 8px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-md);
+  background: var(--tj-paper);
+  box-shadow: var(--tj-shadow);
+}
+
+.menu-panel a:not(.btn) {
+  padding: 11px 12px;
+  border-radius: var(--tj-r-sm);
+  font-size: 15px;
+}
+
+.menu-panel a:not(.btn):hover {
+  background: var(--tj-stone);
+}
+
+.menu-panel a[aria-current] {
+  background: var(--tj-g50);
+  font-weight: 500;
+}
+
+.menu-panel .btn {
+  margin-top: 6px;
+}
+
+/* --- footer ------------------------------------------------------------------------------ */
+.foot {
+  display: grid;
+  gap: 28px;
+  padding-block: 48px 56px;
+  border-top: 1px solid var(--tj-line);
+  font-size: 14px;
+  color: var(--tj-slate);
+}
+
+.foot-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 28px 56px;
+}
+
+.foot-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 64px;
+}
+
+.fg-h {
+  margin: 0 0 12px;
+  font-weight: 500;
+  color: var(--tj-ink);
+}
+
+.fg ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.foot-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--tj-line);
+}
+
+.foot .fl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.foot a:hover {
+  color: var(--tj-ink);
+}
+
+.foot .free {
+  margin-inline-start: auto;
+}
+
+.foot-credit {
+  max-width: 90ch;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* "Pause animations" stops the CSS animations too (the live dots). */
+.motion-paused *,
+.motion-paused *::before,
+.motion-paused *::after {
+  /* biome-ignore lint/complexity/noImportantStyles: the pause must beat every animation */
+  animation-play-state: paused !important;
+}
+
+/* The nav narrows in steps: short language names, then without the section links (they are in
+   the footer too), then a phone's (below). */
+@media (max-width: 1120px) {
+  /* the short names show; the full ones stay for screen readers */
+  .langs .sh {
+    display: inline;
+  }
+
+  .langs .lg {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1020px) {
+  .links {
+    display: none;
+  }
+
+  /* the section links move into the menu */
+  .menu {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    gap: 14px;
+  }
+
+  .navr {
+    gap: 10px;
+  }
+
+  .signin,
+  .wm i,
+  .wm .tj-wm-ar {
+    display: none;
+  }
+
+  :root[lang="ar"] .wm .tj-wm-ar {
+    display: inline;
+  }
+
+  :root[lang="ar"] .wm .tj-wm-lat {
+    display: none;
+  }
+
+  /* "Free for the ummah." under the footer's links */
+  .foot .free {
+    flex-basis: 100%;
+    margin-inline-start: 0;
+  }
+
+  .trust {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .trust li + li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+}
+
+/* A phone: the nav keeps the mark, the language switch, the button and the menu (the name is
+   in the footer and the title), so no language's button is ever cut off. */
+@media (max-width: 500px) {
+  .nav .wm > :not(svg),
+  :root[lang="ar"] .nav .wm .tj-wm-ar {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .navr {
+    gap: 6px;
+  }
+
+  .langs a {
+    padding-inline: 5px;
+  }
+}
+
+/* The smallest phones: "Start free" is in the menu. */
+@media (max-width: 350px) {
+  .nav-start {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must beat every component */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must beat every component */
+    transition: none !important;
+  }
+}

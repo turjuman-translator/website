@@ -1,0 +1,828 @@
+/* --- the text pages (site/pages/doc.html, site/render/doc.ts) --------------------------- */
+.doc {
+  padding-block: clamp(36px, 6vw, 72px) clamp(64px, 9vw, 120px);
+}
+
+.doc-main > * {
+  max-width: 800px;
+}
+
+/* On a wide screen a longer page has "On this page" beside it. */
+.doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.toc {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .doc-grid {
+    grid-template-columns: minmax(0, 800px) 220px;
+    justify-content: space-between;
+    gap: 56px;
+  }
+
+  .toc {
+    display: block;
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+}
+
+.toc-h {
+  margin: 0 0 10px;
+  font-weight: 500;
+  color: var(--tj-ink);
+}
+
+.toc ol {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: 1px solid var(--tj-line);
+}
+
+.toc a {
+  display: block;
+  margin-inline-start: -1px;
+  padding-block: 5px;
+  padding-inline: 14px 0;
+  border-inline-start: 2px solid transparent;
+  line-height: 1.4;
+  color: var(--tj-slate);
+}
+
+.toc a:hover {
+  color: var(--tj-ink);
+}
+
+.toc a[aria-current] {
+  border-inline-start-color: var(--tj-g700);
+  color: var(--tj-ink);
+  font-weight: 500;
+}
+
+.doc-head {
+  display: grid;
+  gap: 16px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.doc-h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.doc-h1:lang(ar) {
+  line-height: 1.3;
+}
+
+.doc-lead {
+  max-width: 46ch;
+  margin: 0;
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.45;
+  color: var(--tj-slate);
+  text-wrap: pretty;
+}
+
+.doc-head .ctas {
+  margin-top: 6px;
+}
+
+.doc-sec {
+  padding-block: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--tj-line);
+  scroll-margin-top: 16px;
+}
+
+.doc-h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.sec-n {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--tj-g800);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.doc p {
+  max-width: 68ch;
+  margin: 0 0 14px;
+  font-size: 16.5px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.doc-sec > :last-child,
+.steps > li > :last-child {
+  margin-bottom: 0;
+}
+
+.doc-sec a:not(.btn, .doc-card, .cmd-more) {
+  color: var(--tj-g700);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--tj-g700) 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.doc-sec a:not(.btn, .doc-card, .cmd-more):hover {
+  text-decoration-color: currentColor;
+}
+
+/* inline code and file names: always left to right, also in Arabic text */
+.doc :not(pre) > code,
+.way :not(pre) > code {
+  padding: 1px 5px;
+  border: 1px solid var(--tj-line);
+  border-radius: 5px;
+  background: var(--tj-stone);
+  font: 0.88em / 1.4 var(--tj-mono);
+  overflow-wrap: anywhere;
+}
+
+/* In Arabic text Chrome paints a short code that starts with "--" one character to the left
+   of its box; as a box of its own, its text is laid out apart from the Arabic around it. */
+:root[dir="rtl"] :not(pre) > code.nb {
+  display: inline-block;
+}
+
+.bullets {
+  display: grid;
+  gap: 8px;
+  max-width: 68ch;
+  margin: 0 0 14px;
+  padding-inline-start: 22px;
+  font-size: 16.5px;
+  line-height: 1.6;
+}
+
+.bullets li::marker {
+  color: var(--tj-g600);
+}
+
+.steps {
+  display: grid;
+  gap: 16px;
+  max-width: 72ch;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps > li {
+  position: relative;
+  padding-inline-start: 40px;
+  counter-increment: step;
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 1px solid var(--tj-g300);
+  border-radius: 50%;
+  color: var(--tj-g800);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.steps > li > p {
+  margin-bottom: 10px;
+}
+
+/* A command block with its Copy button (the code is always left to right). */
+.codebox {
+  position: relative;
+  margin: 0 0 16px;
+}
+
+.codebox .code {
+  padding-right: 88px;
+}
+
+.copy {
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--tj-ivory) 28%, transparent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--tj-ivory);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.copy:hover {
+  border-color: color-mix(in srgb, var(--tj-ivory) 60%, transparent);
+  background: color-mix(in srgb, var(--tj-ivory) 8%, transparent);
+}
+
+.codebox .copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* output and settings: no "$" prompt, spaces kept */
+.code.plain .ln {
+  padding-inline-start: 0;
+  text-indent: 0;
+}
+
+.code.plain .ln::before {
+  content: none;
+}
+
+/* what a command prints: lighter than what you type */
+.codebox .code.nocopy {
+  border: 1px solid var(--tj-line);
+  background: var(--tj-stone);
+  color: var(--tj-ink);
+  padding-right: 18px;
+}
+
+.table-wrap {
+  margin: 0 0 16px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.table th,
+.table td {
+  padding-block: 12px;
+  padding-inline: 0 14px;
+  border-bottom: 1px solid var(--tj-line);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table thead th {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tj-slate);
+}
+
+.table tbody th {
+  width: 34%;
+  font-weight: 500;
+}
+
+.table tbody tr:first-child > * {
+  border-top: 1px solid var(--tj-line);
+}
+
+.table thead + tbody tr:first-child > * {
+  border-top: 0;
+}
+
+.dl {
+  max-width: 72ch;
+  margin: 0 0 16px;
+  border-top: 1px solid var(--tj-line);
+}
+
+.dl > div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 6px 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--tj-line);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+
+.dl dt {
+  font-weight: 500;
+}
+
+.dl dd {
+  margin: 0;
+}
+
+.doc .note {
+  padding: 14px 16px;
+  border-inline-start: 3px solid var(--tj-g500);
+  border-start-end-radius: var(--tj-r-sm);
+  border-end-end-radius: var(--tj-r-sm);
+  background: var(--tj-g50);
+  font-size: 15.5px;
+}
+
+/* A chevron that points onwards (flips on the Arabic page). */
+.arr {
+  display: inline-block;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-top: 1.6px solid currentColor;
+  border-right: 1.6px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.doc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq + .doc-cards {
+  margin-top: 28px;
+}
+
+/* Named doc-card: a plain .card would also style the home page's mosque-screen cards. */
+.doc-card {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  height: 100%;
+  padding: 18px 20px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-lg);
+  background: var(--tj-paper);
+  transition: border-color 0.2s;
+}
+
+.doc-card:hover {
+  border-color: var(--tj-slate);
+}
+
+.doc-card-t {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.doc-card-t .arr {
+  color: var(--tj-g600);
+}
+
+.arr.back {
+  transform: rotate(-135deg);
+}
+
+:root[dir="rtl"] .arr {
+  transform: rotate(-135deg);
+}
+
+:root[dir="rtl"] .arr.back {
+  transform: rotate(45deg);
+}
+
+.doc-card-p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tj-slate);
+}
+
+.faq {
+  max-width: 72ch;
+  border-top: 1px solid var(--tj-line);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--tj-line);
+}
+
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-inline-end: 4px;
+  border-right: 1.6px solid var(--tj-slate);
+  border-bottom: 1.6px solid var(--tj-slate);
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform 0.2s;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+.faq details p {
+  margin: 0 0 16px;
+  color: var(--tj-slate);
+}
+
+/* The way of the audio: five steps in a row, one under the other on a phone. */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.flow li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 14px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-md);
+  background: var(--tj-paper);
+}
+
+.flow li + li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-start: -11px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.6px solid var(--tj-g600);
+  border-right: 1.6px solid var(--tj-g600);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+:root[dir="rtl"] .flow li + li::before {
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.flow-t {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.flow-p {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--tj-slate);
+}
+
+.lang-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 4 150px;
+  column-gap: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.lang-grid li {
+  padding: 3px 0;
+  break-inside: avoid;
+}
+
+/* The commands: name, one line, examples, and where every option is. */
+.cmd {
+  padding: 20px 0 4px;
+  border-top: 1px solid var(--tj-line);
+}
+
+.cmd:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.cmd-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin-bottom: 6px;
+}
+
+.cmd-name {
+  margin: 0;
+  font-size: 17px;
+}
+
+.doc .cmd-name code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 600 16px var(--tj-mono);
+  color: var(--tj-g800);
+}
+
+.cmd-more {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--tj-g700);
+}
+
+.cmd-more::after {
+  content: " ↗";
+}
+
+:root[dir="rtl"] .cmd-more::after {
+  content: " ↖";
+}
+
+.cmd-more:hover {
+  text-decoration: underline;
+}
+
+.helpers {
+  max-width: 800px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--tj-line);
+}
+
+.helpers li {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  align-items: center;
+  gap: 6px 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--tj-line);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.hp-cmd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.helpers .copy {
+  flex: none;
+  height: 26px;
+  padding: 0 9px;
+  border-color: var(--tj-line);
+  color: var(--tj-g700);
+  font-size: 12.5px;
+}
+
+.helpers .copy:hover {
+  border-color: var(--tj-slate);
+  background: var(--tj-stone);
+}
+
+.hp-text {
+  color: var(--tj-slate);
+}
+
+/* The self-host stepper. */
+.stepper {
+  margin: 0 0 28px;
+}
+
+.stepper ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 2px;
+  list-style: none;
+}
+
+.stepper a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding-inline: 5px 12px;
+  border: 1px solid var(--tj-line);
+  border-radius: 999px;
+  background: var(--tj-paper);
+  font-size: 13.5px;
+  white-space: nowrap;
+  color: var(--tj-slate);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.stepper a:hover {
+  border-color: var(--tj-slate);
+  color: var(--tj-ink);
+}
+
+.st-n {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: var(--tj-stone);
+  color: var(--tj-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stepper a[aria-current="step"] {
+  border-color: var(--tj-g800);
+  background: var(--tj-g800);
+  color: #fff;
+}
+
+.stepper a[aria-current="step"] .st-n {
+  background: color-mix(in srgb, #fff 18%, transparent);
+  color: #fff;
+}
+
+.pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+
+.pg {
+  display: grid;
+  gap: 2px;
+  padding: 16px 20px;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-lg);
+  transition: border-color 0.2s;
+}
+
+.pg:hover {
+  border-color: var(--tj-slate);
+}
+
+.pg-next {
+  grid-column: 2;
+  text-align: end;
+}
+
+.pg-l {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--tj-slate);
+}
+
+.pg-next .pg-l {
+  justify-self: end;
+}
+
+.pg-t {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .flow li {
+    grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+    gap: 4px 14px;
+  }
+
+  .flow li + li::before,
+  :root[dir="rtl"] .flow li + li::before {
+    top: -12px;
+    inset-inline-start: 26px;
+    transform: rotate(135deg);
+  }
+}
+
+@media (max-width: 760px) {
+  /* the stepper becomes one row that scrolls sideways, fading out at the end */
+  .stepper ol {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-inline-end: 36px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+  }
+
+  :root[dir="rtl"] .stepper ol {
+    -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(to left, #000 calc(100% - 40px), transparent);
+  }
+
+  .helpers li,
+  .dl > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flow li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  /* tables become stacked rows: the label, then its text */
+  .table,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--tj-line);
+  }
+
+  .table tbody tr:first-child {
+    border-top: 1px solid var(--tj-line);
+  }
+
+  .table th,
+  .table td {
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .table tbody tr:first-child > * {
+    border-top: 0;
+  }
+
+  .table tbody th {
+    width: auto;
+    margin-bottom: 4px;
+  }
+
+  .table td + td {
+    margin-top: 6px;
+  }
+
+  .table td[data-label]::before {
+    content: attr(data-label) " · ";
+    font-weight: 500;
+    color: var(--tj-slate);
+  }
+
+  .pager {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pg-next {
+    grid-column: auto;
+  }
+}

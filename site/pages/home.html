@@ -1,0 +1,117 @@
+<section class="wrap g-hero" aria-labelledby="hero-h">
+  <h1 class="vh" id="hero-h">{{h1}}</h1>
+  <div class="a1-stage" aria-hidden="true">
+    <p class="a1-ar" lang="ar" dir="rtl">{{heroArWords}}</p>
+    <p class="display a1-h" dir="ltr" lang="{{capLang}}">{{heroLine}}</p>
+    <p class="a1-pair" dir="ltr"><i></i><span>{{capLangName}}</span></p>
+  </div>
+  <p class="lead a1-lead">{{lead}}</p>
+  <div class="ctas a1-ctas"><a class="btn primary" href="{{startPath}}">{{cta1}}</a><a class="btn secondary" href="{{p_self_host}}">{{cta2}}</a></div>
+  <ul class="trust a1-trust"><li>{{t1}}</li><li>{{t2}}</li></ul>
+</section>
+
+<section class="wrap g-demo" id="how" aria-labelledby="how-h">
+  <h2 class="vh" id="how-h">{{nav1}}</h2>
+  <p class="vh">{{boardLabel}}</p>
+  <div class="a2-board intro" id="board" data-card="" dir="ltr">
+    <div class="a2-head"><span lang="{{capLang}}">{{capLangName}}</span><span class="a2-mm" id="home-mark">{{markPine}}</span><span class="a2-arl" lang="ar">العربية</span></div>
+    <div class="caps"></div>
+    {{boardCards}}
+  </div>
+  <div class="yt locked" id="scrubber" dir="ltr">
+    <div class="yt-track" tabindex="-1" role="slider" aria-label="{{scrub}}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-disabled="true">
+      <div class="yt-chs">{{chapters}}</div>
+      <span class="yt-thumb" aria-hidden="true"></span>
+      <span class="yt-tip" aria-hidden="true"><b class="yt-tip-n"></b><span class="yt-tip-t mono"></span></span>
+    </div>
+    <div class="yt-row">
+      <div class="yt-ctl">
+        <button type="button" class="yt-play" aria-label="{{motionPause}}" data-play="{{motionPlay}}" data-pause="{{motionPause}}" disabled><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path class="ic-pause" d="M4 3h3v10H4zM9 3h3v10H9z"/><path class="ic-play" d="M4.5 2.5v11l9-5.5z"/></svg></button>
+        <span class="yt-time mono">12:45:00</span><span aria-hidden="true">·</span><span class="yt-chap">{{m_athan}}</span>
+      </div>
+      <span class="yt-sim"><i></i>{{sim}}</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap obs" id="obs">
+  <div class="sec-head"><h2 class="h2">{{obs_h}}</h2><p class="sub">{{obs_p}}</p></div>
+  <svg class="obs-svg obs-wide" viewBox="0 0 1000 330" role="img" aria-label="{{obs_alt}}">
+    <g fill="none" stroke="#BDE3D5" stroke-width="1.5"><path d="M500 64C500 110 240 100 240 150"/><path d="M500 64V150"/><path d="M500 64C500 110 760 100 760 150"/></g>
+    <g transform="translate(365 10)"><rect width="270" height="54" rx="27" fill="#fff" stroke="#BDE3D5"/><text x="135" y="33" text-anchor="middle" class="obs-url">…/feed/3f9c2a1b</text></g>
+    <g transform="translate(150 150)"><rect width="180" height="102" rx="5" fill="#061C15"/><path d="M164 40.8H134" stroke="#8CCEB6" stroke-width="3.2" stroke-linecap="round"/><path d="M14 61.2H118.8M14 79.6H82.8" stroke="#EDEBE2" stroke-width="3.2" stroke-linecap="round" opacity=".85"/><path d="M74 112h32M90 102v10" stroke="#0C3F31" stroke-width="2" stroke-linecap="round"/></g>
+    <g transform="translate(410 150)"><rect width="180" height="116" rx="7" fill="#fff" stroke="#BDE3D5"/><circle cx="13" cy="11" r="2.6" fill="#BDE3D5"/><circle cx="22" cy="11" r="2.6" fill="#BDE3D5"/><circle cx="31" cy="11" r="2.6" fill="#BDE3D5"/><rect x="9" y="24" width="34" height="84" rx="3" fill="#F1FAF6"/><path d="M15 34h22M15 44h16M15 54h19" stroke="#BDE3D5" stroke-width="2" stroke-linecap="round"/><rect x="50" y="24" width="121" height="84" rx="5" fill="#061C15"/><path d="M155 57.6H125" stroke="#8CCEB6" stroke-width="3.2" stroke-linecap="round"/><path d="M64 74.4H129.9M64 89.5H105.7" stroke="#EDEBE2" stroke-width="3.2" stroke-linecap="round" opacity=".85"/></g>
+    <g transform="translate(670 150)"><rect width="180" height="92" rx="5" fill="#061C15"/><path d="M164 36.8H134" stroke="#8CCEB6" stroke-width="3.2" stroke-linecap="round"/><path d="M14 55.2H118.8M14 71.8H82.8" stroke="#EDEBE2" stroke-width="3.2" stroke-linecap="round" opacity=".85"/><path d="M64 128L80 98H100L116 128Z" fill="#F1FAF6"/><rect x="72" y="124" width="36" height="14" rx="4" fill="#fff" stroke="#0C3F31" stroke-width="1.6"/></g>
+    <text x="240" y="314" text-anchor="middle" class="obs-lbl">{{obs_tv}}</text>
+    <text x="500" y="314" text-anchor="middle" class="obs-lbl">{{obs_obs}}</text>
+    <text x="760" y="314" text-anchor="middle" class="obs-lbl">{{obs_pj}}</text>
+  </svg>
+  <svg class="obs-svg obs-tall" viewBox="0 0 360 452" role="img" aria-label="{{obs_alt}}">
+    <g fill="none" stroke="#BDE3D5" stroke-width="1.5"><path d="M180 58V112"/><path d="M180 112C180 128 92 120 92 140"/><path d="M180 112V296"/><path d="M180 112C180 128 268 120 268 140"/></g>
+    <g transform="translate(60 6)"><rect width="240" height="52" rx="26" fill="#fff" stroke="#BDE3D5"/><text x="120" y="32" text-anchor="middle" class="obs-url">…/feed/3f9c2a1b</text></g>
+    <g transform="translate(20 140)"><rect width="144" height="82" rx="5" fill="#061C15"/><path d="M131 32.8H107" stroke="#8CCEB6" stroke-width="3" stroke-linecap="round"/><path d="M12 49.2H95M12 64H66" stroke="#EDEBE2" stroke-width="3" stroke-linecap="round" opacity=".85"/><path d="M59 90h26M72 82v8" stroke="#0C3F31" stroke-width="2" stroke-linecap="round"/></g>
+    <g transform="translate(196 140)"><rect width="144" height="74" rx="5" fill="#061C15"/><path d="M131 29.6H107" stroke="#8CCEB6" stroke-width="3" stroke-linecap="round"/><path d="M12 44.4H95M12 57.6H66" stroke="#EDEBE2" stroke-width="3" stroke-linecap="round" opacity=".85"/><path d="M51 103L64 78H80L93 103Z" fill="#F1FAF6"/><rect x="58" y="100" width="28" height="11" rx="3" fill="#fff" stroke="#0C3F31" stroke-width="1.4"/></g>
+    <text x="92" y="276" text-anchor="middle" class="obs-lbl">{{obs_tv}}</text>
+    <text x="268" y="276" text-anchor="middle" class="obs-lbl">{{obs_pj}}</text>
+    <g transform="translate(90 296)"><rect width="180" height="116" rx="7" fill="#fff" stroke="#BDE3D5"/><circle cx="13" cy="11" r="2.6" fill="#BDE3D5"/><circle cx="22" cy="11" r="2.6" fill="#BDE3D5"/><circle cx="31" cy="11" r="2.6" fill="#BDE3D5"/><rect x="9" y="24" width="34" height="84" rx="3" fill="#F1FAF6"/><path d="M15 34h22M15 44h16M15 54h19" stroke="#BDE3D5" stroke-width="2" stroke-linecap="round"/><rect x="50" y="24" width="121" height="84" rx="5" fill="#061C15"/><path d="M155 57.6H125" stroke="#8CCEB6" stroke-width="3.2" stroke-linecap="round"/><path d="M64 74.4H129.9M64 89.5H105.7" stroke="#EDEBE2" stroke-width="3.2" stroke-linecap="round" opacity=".85"/></g>
+    <text x="180" y="444" text-anchor="middle" class="obs-lbl">{{obs_obs}}</text>
+  </svg>
+  <p class="sec-more"><a class="more-link" href="{{p_show_on_a_screen}}">{{stepsObs}}<i class="arr" aria-hidden="true"></i></a></p>
+</section>
+
+<section class="sec wrap" id="custom">
+  <div class="sec-head"><h2 class="h2">{{cus_h}}</h2><p class="sub">{{cus_p}}</p></div>
+  <div class="cd">
+    <fieldset class="cd-chips" aria-label="{{cus_look}}">{{presetChips}}</fieldset>
+    <div class="capdemo" data-behind="camera" dir="ltr" role="img" aria-label="{{cd_preview}}"><div class="capdemo-stage">{{capdemoStage}}</div></div>
+    <div class="cd-ctl">
+      <fieldset class="cd-grp" aria-labelledby="cd-layout"><span class="cd-lbl" id="cd-layout">{{cus_layout}}</span><button type="button" class="cd-btn" data-layout="blocks" aria-pressed="true">{{cd_blocks}}</button><button type="button" class="cd-btn" data-layout="rollup" aria-pressed="false">{{cd_rolling}}</button></fieldset>
+      <label class="cd-chk"><input type="checkbox" id="cd-src">{{cd_src}}</label>
+      <label class="cd-chk"><input type="checkbox" id="cd-quran" checked>{{cd_quran}}</label>
+      <label class="cd-grp cd-size"><span class="cd-lbl">{{cus_size}}</span><input type="range" id="cd-size" min="32" max="84" step="1" value="52"></label>
+      <fieldset class="cd-grp" aria-labelledby="cd-behind"><span class="cd-lbl" id="cd-behind">{{cd_behind}}</span><button type="button" class="cd-btn" data-behind="camera" aria-pressed="true">{{cd_cam}}</button><button type="button" class="cd-btn" data-behind="black" aria-pressed="false">{{cd_black}}</button><button type="button" class="cd-btn" data-behind="white" aria-pressed="false">{{cd_white}}</button><button type="button" class="cd-btn" data-behind="transparent" aria-pressed="false">{{cd_tr}}</button></fieldset>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="quran">
+  <div class="split">
+    <div class="sec-head flush"><h2 class="h2">{{q_h}}</h2><p class="sub">{{q_p}}</p></div>
+    <div class="verse-demo" id="verse-demo">
+      <p class="vd-ar" lang="ar" dir="rtl">{{verseWords}}</p>
+      <p class="vd-tr" lang="{{capLang}}" dir="ltr"><span>{{verseText}}</span><span class="vd-ref">{{verseRef}}</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="prayer">
+  <div class="split">
+    <div class="sec-head flush"><h2 class="h2">{{det_h}}</h2><p class="sub">{{det_p}}</p></div>
+    <div class="prayer" id="prayer-demo">
+      <div class="tj-screen" dir="ltr" data-card="iqama">
+        <div class="bar"><span class="sm">{{markOnPine}}</span><span lang="{{capLang}}">{{screenHall}}</span><span class="sep"></span><span class="mono">{{pair}}</span><span class="livep" lang="{{capLang}}"><i></i><span>{{screenLive}}</span></span></div>
+        {{screenCards}}
+      </div>
+      <fieldset class="moments" aria-label="{{moments}}">{{momentButtons}}</fieldset>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="start">
+  <div class="sec-head"><h2 class="h2">{{start_h}}</h2></div>
+  <div class="start">
+    <article class="way">
+      <h3>{{acc_h}}</h3>
+      <p>{{acc_p}}</p>
+      <div class="keyfield" dir="ltr"><span class="kf-key" aria-hidden="true"><span class="kf-dots">••••••••••••</span><span>3f2a</span></span><span class="ok">{{lockIcon}}<span>{{enc}}</span></span></div>
+      <div><a class="btn primary" href="{{startPath}}">{{cta1}}</a></div>
+    </article>
+    <article class="way" id="self-host">
+      <h3>{{self_h}}</h3>
+      <p>{{self_p}}</p>
+      <pre class="code" id="commands" dir="ltr">{{commands}}</pre>
+      <div class="way-actions"><button type="button" class="btn secondary sm" data-copy="commands" data-copied="{{copied}}">{{copy}}</button><span class="vh" role="status"></span><a class="more-link" href="{{p_install}}">{{stepByStep}}<i class="arr" aria-hidden="true"></i></a></div>
+    </article>
+  </div>
+  <ul class="facts"><li><a href="{{licenseUrl}}" hreflang="en">{{f1}}</a></li><li><a href="{{github}}" hreflang="en">{{f2}}</a></li><li><a href="{{p_security}}">{{f3}}</a></li><li>{{f4}}</li></ul>
+</section>

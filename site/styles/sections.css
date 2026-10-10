@@ -1,0 +1,444 @@
+/* --- works with what you already use ----------------------------------------------------- */
+.obs-svg {
+  width: 100%;
+  max-width: 980px;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.obs-url {
+  font: 500 15px var(--tj-mono);
+  fill: var(--tj-g800);
+  /* a URL reads left to right, on the Arabic page too */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.obs-lbl {
+  font: 500 12.5px var(--tj-mono);
+  fill: var(--tj-slate);
+}
+
+.obs-lbl:lang(ar) {
+  font-family: var(--tj-sans);
+  font-size: 14px;
+}
+
+.obs-tall {
+  display: none;
+  max-width: 400px;
+}
+
+/* --- verses ------------------------------------------------------------------------------ */
+.verse-demo {
+  display: grid;
+  gap: 22px;
+}
+
+.vd-ar {
+  margin: 0;
+  font: 400 clamp(30px, 4.2vw, 54px) / 1.9 var(--tj-quran);
+  font-synthesis: none;
+  color: var(--tj-g800);
+  text-align: right;
+}
+
+.vd-ar .w {
+  opacity: 1;
+  clip-path: none;
+  transition: color 0.5s var(--tj-io);
+}
+
+.verse-demo.ready .vd-ar .w {
+  color: var(--dim);
+}
+
+.verse-demo.ready .vd-ar .w.lit {
+  color: var(--tj-g800);
+}
+
+.vd-tr {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.45;
+  color: var(--tj-ink);
+  text-align: left;
+  transition:
+    opacity 0.8s var(--tj-io),
+    transform 0.9s var(--tj-out);
+}
+
+.verse-demo.ready .vd-tr {
+  opacity: 0.18;
+  transform: translateY(4px);
+}
+
+.verse-demo.ready .vd-tr.on {
+  opacity: 1;
+  transform: none;
+}
+
+.vd-ref {
+  margin-inline-start: 0.4em;
+  font: 500 14px var(--tj-mono);
+  color: var(--tj-g600);
+}
+
+/* --- prayer moments: a small mosque screen ----------------------------------------------- */
+.prayer {
+  display: grid;
+  gap: 22px;
+}
+
+.tj-screen {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--tj-r-lg);
+  background: var(--tj-g950);
+  box-shadow:
+    0 0 0 1px rgb(6 28 21 / 6%),
+    0 2px 4px rgb(6 28 21 / 6%),
+    0 40px 90px -40px rgb(6 40 30 / 50%);
+}
+
+.tj-screen .bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1.5cqw;
+  height: 6.2cqw;
+  padding-inline: 3.4cqw;
+  font: 500 1.32cqw / 1 var(--tj-sans);
+  color: color-mix(in srgb, var(--tj-ivory) 62%, transparent);
+}
+
+.tj-screen .bar .sm svg {
+  width: auto;
+  height: 2.7cqw;
+}
+
+.tj-screen .bar .sep {
+  width: 1px;
+  height: 1.5cqw;
+  background: color-mix(in srgb, var(--tj-ivory) 16%, transparent);
+}
+
+.tj-screen .bar .mono {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.tj-screen .livep {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  color: var(--tj-ivory);
+}
+
+.tj-screen .livep i {
+  width: 0.8cqw;
+  height: 0.8cqw;
+  border-radius: 50%;
+  background: var(--tj-live);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.tj-screen .card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.2cqw;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.985);
+  pointer-events: none;
+  transition:
+    opacity 0.6s var(--tj-io),
+    transform 0.8s var(--tj-out);
+}
+
+.tj-screen[data-card="athan"] .card.athan,
+.tj-screen[data-card="iqama"] .card.iqama,
+.tj-screen[data-card="salah"] .card.salah {
+  opacity: 1;
+  transform: none;
+}
+
+.card .c-ar {
+  font: 500 8cqw / 1.25 var(--tj-naskh);
+  color: var(--tj-sand);
+}
+
+.card.salah .c-ar {
+  color: color-mix(in srgb, var(--tj-sand) 55%, transparent);
+}
+
+.card .c-lat {
+  font: 600 2.8cqw / 1 var(--tj-sans);
+  letter-spacing: -0.01em;
+  color: var(--tj-ivory);
+}
+
+.card .c-sub {
+  font: 400 1.7cqw / 1.4 var(--tj-sans);
+  color: color-mix(in srgb, var(--tj-ivory) 58%, transparent);
+}
+
+@container (max-width: 560px) {
+  .tj-screen .bar {
+    height: 10cqw;
+    gap: 2.4cqw;
+    padding-inline: 5cqw;
+    font-size: 3cqw;
+  }
+
+  .tj-screen .bar .sm svg {
+    height: 4.6cqw;
+  }
+
+  .tj-screen .bar .sep {
+    height: 3cqw;
+  }
+
+  .tj-screen .livep i {
+    width: 1.8cqw;
+    height: 1.8cqw;
+  }
+
+  .card .c-ar {
+    font-size: 14cqw;
+  }
+
+  .card .c-lat {
+    font-size: 5cqw;
+  }
+
+  .card .c-sub {
+    font-size: 3.4cqw;
+  }
+}
+
+.moments {
+  display: inline-flex;
+  justify-self: start;
+  overflow: hidden;
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-md);
+  background: var(--tj-paper);
+}
+
+.moments button {
+  padding: 10px 18px;
+  border: 0;
+  background: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.35s var(--tj-io),
+    color 0.35s var(--tj-io);
+}
+
+.moments button + button {
+  border-inline-start: 1px solid var(--tj-line);
+}
+
+.moments button.on {
+  background: var(--tj-g800);
+  color: #fff;
+}
+
+/* --- two ways to start ------------------------------------------------------------------- */
+.start {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.way {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--tj-line);
+  border-radius: var(--tj-r-lg);
+  background: var(--tj-paper);
+  scroll-margin-top: clamp(24px, 10vw, 150px);
+}
+
+.way h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.way p {
+  margin: 0;
+  max-width: 38ch;
+  color: var(--tj-slate);
+}
+
+.keyfield {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--tj-line);
+  border-radius: 9px;
+  background: var(--tj-stone);
+  font: 14px var(--tj-mono);
+  color: var(--tj-slate);
+}
+
+/* A narrow card loses dots, never the key's last four characters. */
+.keyfield .kf-key {
+  display: flex;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.keyfield .kf-dots {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.keyfield .ok {
+  flex: none;
+  white-space: nowrap;
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 12.5px var(--tj-sans);
+  color: var(--tj-g700);
+}
+
+.code {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: var(--tj-r-md);
+  background: var(--tj-g950);
+  color: var(--tj-ivory);
+  font: 13.5px / 1.75 var(--tj-mono);
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* One command per line; a long one wraps under itself, past its "$ ". */
+.code .ln {
+  display: block;
+  padding-inline-start: 2ch;
+  text-indent: -2ch;
+}
+
+code .nb,
+code.nb,
+.code .nb {
+  white-space: nowrap;
+}
+
+.code .ln::before {
+  content: "$ ";
+  color: var(--tj-g300);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.facts {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 0;
+  font-size: 14.5px;
+  color: var(--tj-slate);
+}
+
+.facts li + li {
+  margin-inline-start: 18px;
+  padding-inline-start: 18px;
+  border-inline-start: 1px solid var(--tj-line);
+}
+
+.facts a:hover {
+  color: var(--tj-ink);
+}
+
+@media (max-width: 900px) {
+  .start {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Too narrow for one row: two tidy columns, no separators (they would start a line). */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 8px 36px;
+  }
+
+  .facts li + li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .obs-wide {
+    display: none;
+  }
+
+  .obs-tall {
+    display: block;
+  }
+}
+
+/* A quiet link onwards (Steps for OBS, Step by step). */
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 500;
+  color: var(--tj-g700);
+}
+
+.more-link:hover {
+  color: var(--tj-g800);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sec-more {
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+.way-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+}

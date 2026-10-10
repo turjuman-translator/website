@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- biome-ignore lint/a11y/useValidLang: the build fills in each page's language -->
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+{{robots}}
+{{canonical}}
+{{alternates}}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Turjuman">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{desc}}">
+{{ogUrl}}
+<meta property="og:image" content="{{ogImage}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ogImageAlt}}">
+<meta property="og:locale" content="{{ogLocale}}">
+{{ogAltLocales}}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{icon}}" type="image/svg+xml">
+<link rel="icon" href="{{iconPng}}" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="{{touchIcon}}">
+{{preloads}}
+<link rel="stylesheet" href="{{style}}">
+<script type="module" src="{{script}}"></script>
+{{jsonLd}}
+</head>
+<body data-page="{{pageId}}">
+<a class="skip" href="#main">{{skip}}</a>
+<header class="wrap nav">
+  <a class="wm-link" href="{{homeHref}}" aria-label="{{brand}}">{{wordmark}}</a>
+  <nav class="links" aria-label="{{navLabel}}">{{navLinks}}</nav>
+  <div class="navr">
+    <nav class="langs" aria-label="{{langLabel}}">{{langSwitch}}</nav>
+    <a class="signin" href="{{loginPath}}">{{login}}</a>
+    <a class="btn primary sm nav-start" href="{{startPath}}">{{start}}</a>
+    <details class="menu">
+      <summary><span class="vh">{{menu}}</span><svg class="menu-ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg></summary>
+      <nav class="menu-panel" aria-label="{{menu}}">{{menuLinks}}<a class="btn primary" href="{{startPath}}">{{start}}</a></nav>
+    </details>
+  </div>
+</header>
+<main id="main">
+{{content}}
+</main>
+<footer class="wrap foot">
+  <div class="foot-main">
+    <a class="wm-link" href="{{homeHref}}" aria-label="{{brand}}">{{wordmark}}</a>
+    <nav class="foot-groups" aria-label="{{footLabel}}">{{footGroups}}</nav>
+  </div>
+  <div class="foot-row"><div class="fl">{{footLinks}}</div><span class="free">{{freeU}}</span></div>
+  <p class="foot-credit">{{quranCredit}}</p>
+</footer>
+</body>
+</html>

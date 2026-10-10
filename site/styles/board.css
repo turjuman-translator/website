@@ -1,0 +1,549 @@
+/* --- the two-sided board: the translation left, the Arabic right ------------------------- */
+.g-demo {
+  padding-block: clamp(64px, 9vw, 112px) 0;
+}
+
+.a2-board {
+  position: relative;
+  height: clamp(420px, 44vw, 560px);
+  border-block: 1px solid var(--tj-line);
+  background: color-mix(in srgb, var(--tj-paper) 72%, transparent);
+}
+
+.a2-board::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--tj-line);
+}
+
+.a2-head {
+  position: absolute;
+  inset: 18px 0 auto;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-inline: 4px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--tj-slate);
+}
+
+.a2-head .a2-arl {
+  justify-self: end;
+}
+
+.a2-mm {
+  padding: 6px 14px;
+  background: var(--tj-paper);
+}
+
+.a2-mm svg {
+  width: auto;
+  height: 30px;
+  transition: opacity 0.3s;
+}
+
+.a2-mm.away svg {
+  opacity: 0;
+  transition: none;
+}
+
+.a2-board .caps,
+.bcard {
+  position: absolute;
+  inset: 80px 4px 30px;
+  transition: opacity 0.5s var(--tj-io);
+}
+
+.a2-board .caps {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(22px, 2.6vw, 34px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent, #000 24%);
+  mask-image: linear-gradient(transparent, #000 24%);
+}
+
+.a2-board .blk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(48px, 7vw, 112px);
+  align-items: baseline;
+  transition: opacity 0.45s var(--tj-io);
+}
+
+.a2-board .blk .tr {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  font: 500 clamp(21px, 2.4vw, 32px) / 1.3 var(--tj-sans);
+  letter-spacing: -0.012em;
+  color: var(--tj-ink);
+  text-wrap: pretty;
+  transition: opacity 0.6s var(--tj-io);
+}
+
+.a2-board .blk .ar {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font: 500 clamp(21px, 2.3vw, 30px) / 1.75 var(--tj-naskh);
+  color: var(--tj-ink);
+  text-align: right;
+}
+
+.a2-board .blk.verse .ar {
+  font-family: var(--tj-quran);
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(23px, 2.6vw, 34px);
+  line-height: 1.95;
+  color: var(--tj-g700);
+}
+
+.a2-board .blk.verse .tr {
+  color: var(--tj-g800);
+}
+
+.a2-board .blk .ref {
+  margin-inline-start: 0.5em;
+  font: 500 0.6em var(--tj-mono);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  vertical-align: 0.12em;
+  color: var(--tj-g600);
+}
+
+.a2-board .blk.past .tr,
+.a2-board .blk.past .ar {
+  opacity: 0.3;
+  transition: opacity 0.6s var(--tj-io);
+}
+
+.a2-board .blk.leaving {
+  opacity: 0;
+}
+
+/* a verse's translation settles as a whole */
+.whole {
+  opacity: 0;
+  clip-path: inset(-0.8em 100% -0.8em -0.3em);
+  transition:
+    opacity 0.7s var(--tj-io),
+    clip-path 0.9s var(--tj-out);
+}
+
+.whole.on {
+  opacity: 1;
+  clip-path: inset(-0.8em -0.3em -0.8em -0.3em);
+}
+
+.bcard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: clamp(48px, 7vw, 112px);
+  align-items: end;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.a2-board[data-card="athan"] .bcard.athan,
+.a2-board[data-card="iqama"] .bcard.iqama,
+.a2-board[data-card="salah"] .bcard.salah {
+  opacity: 1;
+}
+
+/* During a prayer moment (and the logo intro) the captions make way. */
+.a2-board:not([data-card=""]) .caps,
+.a2-board.intro .caps,
+.a2-board.intro .bcard.bcard {
+  opacity: 0;
+}
+
+.bc-l {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  align-self: end;
+  padding-bottom: 6px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.7s var(--tj-io),
+    transform 0.9s var(--tj-out);
+}
+
+.bcard.det .bc-l {
+  opacity: 1;
+  transform: none;
+}
+
+.bc-lat {
+  font: 600 clamp(40px, 4.8vw, 66px) / 1 var(--tj-sans);
+  letter-spacing: -0.035em;
+}
+
+.bc-sub {
+  font-size: clamp(17px, 1.6vw, 21px);
+  color: var(--tj-slate);
+  transition:
+    opacity 0.7s var(--tj-io),
+    transform 0.9s var(--tj-out);
+}
+
+.bcard:not(.det) .bc-sub {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.bcard.det .bc-sub {
+  transition-delay: 0.18s;
+}
+
+.bc-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  align-self: stretch;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent, #000 34%);
+  mask-image: linear-gradient(transparent, #000 34%);
+}
+
+.bc-line {
+  margin: 0;
+  font: 500 clamp(24px, 2.7vw, 36px) / 1.7 var(--tj-naskh);
+  color: var(--tj-g800);
+  text-align: right;
+  transition:
+    opacity 0.8s var(--tj-io),
+    color 0.8s var(--tj-io);
+}
+
+.bc-line.q {
+  font-family: var(--tj-quran);
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.95;
+  color: var(--tj-g700);
+}
+
+.bc-line.past {
+  opacity: 0.34;
+  color: var(--tj-ink);
+}
+
+/* phrases arrive slower than captions, with a soft blur-in */
+.bc-line .mw {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.34em);
+  filter: blur(5px);
+  transition:
+    opacity 0.85s var(--tj-out),
+    transform 1.1s var(--tj-out),
+    filter 0.85s var(--tj-out);
+}
+
+.bc-line .mw.on {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* A seek (drag, click, keys) shows its moment at once: nothing fades or glides (captions.ts). */
+.a2-board.jump,
+.a2-board.jump * {
+  /* biome-ignore lint/complexity/noImportantStyles: a seek must beat every transition on the board */
+  transition: none !important;
+}
+
+/* --- the chapter scrubber ---------------------------------------------------------------- */
+.yt {
+  margin-top: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.yt-track {
+  position: relative;
+  padding: 10px 0 4px;
+  cursor: pointer;
+  touch-action: none;
+  outline: none;
+  transition: opacity 0.7s var(--tj-io);
+}
+
+.yt-track:focus-visible {
+  outline: 2px solid var(--tj-g600);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.yt-chs {
+  display: flex;
+  gap: 4px;
+}
+
+.yt-ch {
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.yt-bar {
+  position: relative;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--tj-line);
+  overflow: hidden;
+  transition:
+    height 0.18s var(--tj-out),
+    margin 0.18s var(--tj-out);
+}
+
+.yt.hover .yt-bar,
+.yt.drag .yt-bar {
+  height: 7px;
+  margin-block: -1.5px;
+}
+
+.yt-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--tj-g700);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.yt-lab {
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--tj-slate);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: color 0.3s;
+}
+
+.yt-lab .mono {
+  margin-inline-end: 6px;
+  font-size: 11.5px;
+}
+
+.yt-ch.on .yt-lab {
+  color: var(--tj-ink);
+}
+
+/* Placed with `left` (scrubber.ts); it grows with `scale`, never a transform. */
+.yt-thumb {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tj-g800);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--tj-g800) 12%, transparent);
+  scale: 0.72;
+  transition: scale 0.18s var(--tj-out);
+}
+
+.yt.hover .yt-thumb,
+.yt.drag .yt-thumb {
+  scale: 1;
+}
+
+.yt-tip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: var(--tj-r-sm);
+  background: var(--tj-ink);
+  color: #fff;
+  font-size: 12.5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.yt.hover .yt-tip,
+.yt.drag .yt-tip {
+  opacity: 1;
+}
+
+.yt-tip-t {
+  font-size: 11.5px;
+  opacity: 0.75;
+}
+
+.yt-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--tj-slate);
+}
+
+.yt-ctl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.yt-ctl > :not(.yt-play) {
+  transition: opacity 0.7s var(--tj-io);
+}
+
+/* Until the intro has landed. The play button works from the start: it pauses everything that
+   moves (WCAG 2.2.2). */
+.yt.locked .yt-track,
+.yt.locked .yt-ctl > :not(.yt-play) {
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.yt-play {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--tj-line);
+  border-radius: 50%;
+  background: var(--tj-paper);
+  color: var(--tj-ink);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.yt-play:hover {
+  background: var(--tj-stone);
+}
+
+.ic {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.ic .ic-play,
+.paused > .ic .ic-pause {
+  display: none;
+}
+
+.paused > .ic .ic-play {
+  display: block;
+}
+
+.yt-time {
+  font-size: 13px;
+  color: var(--tj-ink);
+}
+
+.yt-chap {
+  font-weight: 500;
+  color: var(--tj-ink);
+}
+
+.yt-sim {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.yt-sim i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tj-g500);
+}
+
+/* --- the logo intro ---------------------------------------------------------------------- */
+.intro-dots,
+.intro-mark {
+  position: absolute;
+  pointer-events: none;
+}
+
+.intro-dots {
+  z-index: 39;
+}
+
+.intro-mark {
+  z-index: 40;
+  overflow: visible;
+  transform-origin: 0 0;
+}
+
+.intro-mark path {
+  fill: none;
+  stroke-width: 4.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro-mark .b-arch,
+.intro-mark .b-l2 {
+  stroke: var(--tj-g800);
+}
+
+.intro-mark .b-l1 {
+  stroke: var(--tj-g500);
+}
+
+@media (max-width: 760px) {
+  .a2-board::before {
+    display: none;
+  }
+
+  .a2-board .blk,
+  .bcard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .a2-board .blk .ar {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .a2-board .blk .tr {
+    grid-row: 2;
+  }
+
+  .bcard {
+    align-content: end;
+    row-gap: 14px;
+  }
+
+  .bc-lines {
+    grid-row: 1;
+  }
+
+  .bc-l {
+    grid-row: 2;
+  }
+
+  .yt-lab {
+    font-size: 11.5px;
+  }
+
+  .yt-lab .mono {
+    display: none;
+  }
+}

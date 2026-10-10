@@ -1,0 +1,10 @@
+/* Spoken Arabic on the website is set at weight 500 (web/fonts.css has the caption pages' 400 and
+   600). Same offline @fontsource family. */
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("@fontsource/noto-naskh-arabic/files/noto-naskh-arabic-arabic-500-normal.woff2")
+    format("woff2");
+}

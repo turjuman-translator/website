@@ -1,0 +1,103 @@
+/* --- hero: the live headline ------------------------------------------------------------- */
+.g-hero {
+  padding-block: clamp(56px, 8vw, 104px) 0;
+  text-align: center;
+}
+
+.a1-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: clamp(8px, 1.4vw, 18px);
+}
+
+.a1-ar {
+  margin: 0;
+  font: 500 clamp(30px, 4.2vw, 54px) / 1.45 var(--tj-naskh);
+  color: var(--tj-g800);
+}
+
+.a1-ar.live .aw {
+  color: var(--dim);
+  transition: color 0.5s var(--tj-io);
+}
+
+.a1-ar.live .aw.on {
+  color: var(--tj-g800);
+}
+
+/* 18ch: the Dutch, Turkish and French lines take two lines like the English one, not three */
+.a1-h {
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+/* measures the tallest translation (headline.ts) */
+.a1-probe {
+  position: absolute;
+  inset-inline: 0;
+  margin-inline: auto;
+  min-height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.a1-pair {
+  margin: 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tj-slate);
+}
+
+.a1-pair i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tj-live);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.a1-lead {
+  margin: 30px auto 0;
+  max-width: 36ch;
+}
+
+.a1-ctas {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.a1-trust {
+  justify-content: center;
+}
+
+/* Words revealed as they are said: a soft wipe in the reading direction. */
+.w {
+  display: inline-block;
+  opacity: 0;
+  clip-path: inset(-0.7em 100% -0.7em -0.25em);
+  transition:
+    clip-path 0.38s var(--tj-out),
+    opacity 0.38s var(--tj-out);
+}
+
+.w.rtl {
+  clip-path: inset(-0.7em -0.25em -0.7em 100%);
+}
+
+.w.on {
+  opacity: 1;
+  clip-path: inset(-0.7em -0.25em -0.7em -0.25em);
+}
+
+@media (max-width: 520px) {
+  /* the longest words of the six headlines must fit a phone */
+  .a1-h {
+    font-size: clamp(30px, 9.2vw, 46px);
+    /* "vertaald voor / iedereen.", not "vertaald / voor iedereen." */
+    text-wrap: pretty;
+  }
+}
