@@ -100,6 +100,14 @@ server {
     server_name turjuman.example.org;
     return 301 https://$host$request_uri;
 }
+
+# Any other hostname is dropped, so a forged Host never reaches Turjuman.
+server {
+    listen 80 default_server;
+    listen 443 ssl default_server;
+    ssl_reject_handshake on;
+    return 444;
+}
 ```
 
 `server_name` and the certificate paths are nginx's own settings, nothing else uses them. With
