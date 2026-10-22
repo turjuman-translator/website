@@ -429,9 +429,9 @@ export const install: DocPage = {
               ],
               [
                 L(
-                  "The dot in the screen's corner is red",
-                  "De stip in de hoek van het scherm is rood",
-                  "النقطة في زاوية الشاشة حمراء",
+                  "The dot in the screen's corner stays orange",
+                  "De stip in de hoek van het scherm blijft oranje",
+                  "النقطة في زاوية الشاشة تبقى برتقالية",
                 ),
                 L(
                   "Switch it on in the dashboard.",

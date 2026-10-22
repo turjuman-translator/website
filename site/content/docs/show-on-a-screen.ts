@@ -294,21 +294,29 @@ export const showOnAScreen: DocPage = {
               ],
               [
                 L(
-                  "The dot in the bottom-left corner is red",
-                  "De stip linksonder is rood",
-                  "النقطة في أسفل اليسار حمراء",
+                  "The dot in the bottom-left corner stays orange",
+                  "De stip linksonder blijft oranje",
+                  "النقطة في أسفل اليسار تبقى برتقالية",
                 ),
                 L(
-                  "Switch the screen on in the app. Still red: point at the dot in a browser, it says why.",
-                  "Zet het scherm aan in de app. Nog steeds rood: wijs de stip aan in een browser, die zegt waarom.",
-                  "شغّل الشاشة من التطبيق. إن بقيت حمراء فأشِر إلى النقطة في متصفح، فهي تذكر السبب.",
+                  "The screen is off: switch it on in the app.",
+                  "Het scherm staat uit: zet het aan in de app.",
+                  "الشاشة متوقفة: شغّلها من التطبيق.",
+                ),
+              ],
+              [
+                L("The dot is red", "De stip is rood", "النقطة حمراء"),
+                L(
+                  "Something does not work: point at the dot in a browser, it says why. Pulsing: the page can't reach Turjuman.",
+                  "Er werkt iets niet: wijs de stip aan in een browser, die zegt waarom. Knippert hij: de pagina bereikt Turjuman niet.",
+                  "هناك ما لا يعمل: أشِر إلى النقطة في متصفح، فهي تذكر السبب. وإن كانت تنبض فالصفحة لا تصل إلى ترجمان.",
                 ),
               ],
               [
                 L(
-                  "The bar next to the dot stays red or orange",
-                  "Het balkje naast de stip blijft rood of oranje",
-                  "الشريط بجانب النقطة يبقى أحمر أو برتقاليًا",
+                  "The bar next to the dot stays short (or red or orange, with Send all sound off)",
+                  "Het balkje naast de stip blijft kort (of rood of oranje, met Al het geluid doorsturen uit)",
+                  "الشريط بجانب النقطة يبقى قصيرًا (أو أحمر أو برتقاليًا عند إيقاف «إرسال كل الصوت»)",
                 ),
                 L(
                   "The microphone hears too little: check that it is on and loud enough, or choose another one in the builder.",

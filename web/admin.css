@@ -262,7 +262,8 @@
   animation: sc-blink 2.4s ease-in-out infinite;
 }
 
-.sc-status.is-idle .sc-dot {
+.sc-status.is-idle .sc-dot,
+.sc-status.is-off .sc-dot {
   background: var(--tj-warn);
 }
 
