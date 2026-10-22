@@ -90,9 +90,9 @@ export const howItWorks: DocPage = {
         {
           ul: [
             L(
-              "Complete sentences, a few seconds after the imam pauses: faithful, never a summary.",
-              "Hele zinnen, enkele seconden nadat de imam pauzeert: getrouw, nooit een samenvatting.",
-              "جمل كاملة بعد ثوانٍ من توقّف الإمام، مترجمة بأمانة، وليست تلخيصًا.",
+              "Complete sentences, faithful, never a summary. New text comes in calm steps 6 to 20 seconds apart; Quran verses and prayer cards appear at once.",
+              "Hele zinnen, getrouw, nooit een samenvatting. Nieuwe tekst komt in rustige stappen, 6 tot 20 seconden na elkaar; Koranverzen en gebedskaarten verschijnen meteen.",
+              "جمل كاملة مترجمة بأمانة، وليست تلخيصًا. يأتي النص الجديد على مراحل هادئة بين كل منها 6 إلى 20 ثانية، أما آيات القرآن وبطاقات الصلاة فتظهر فورًا.",
             ),
             L(
               "Quran verses in quotes, with a reference such as (2:286) only when the Arabic matches the Quran text exactly.",
