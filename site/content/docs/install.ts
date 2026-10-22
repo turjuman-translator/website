@@ -429,9 +429,9 @@ export const install: DocPage = {
               ],
               [
                 L(
-                  "The screen says it is off",
-                  "Het scherm meldt dat het uit staat",
-                  "تعرض الشاشة أنها متوقفة",
+                  "The dot in the screen's corner is red",
+                  "De stip in de hoek van het scherm is rood",
+                  "النقطة في زاوية الشاشة حمراء",
                 ),
                 L(
                   "Switch it on in the dashboard.",

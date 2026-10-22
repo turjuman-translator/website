@@ -289,14 +289,26 @@ export const showOnAScreen: DocPage = {
               ],
               [
                 L(
-                  "The screen says “Live translation is off”",
-                  "Het scherm meldt „Live vertaling staat uit”",
-                  "تعرض الشاشة أن الترجمة الفورية متوقفة",
+                  "The dot in the bottom-left corner is red",
+                  "De stip linksonder is rood",
+                  "النقطة في أسفل اليسار حمراء",
                 ),
                 L(
-                  "Switch the screen on in the app.",
-                  "Zet het scherm aan in de app.",
-                  "شغّل الشاشة من التطبيق.",
+                  "Switch the screen on in the app. Still red: point at the dot in a browser, it says why.",
+                  "Zet het scherm aan in de app. Nog steeds rood: wijs de stip aan in een browser, die zegt waarom.",
+                  "شغّل الشاشة من التطبيق. إن بقيت حمراء فأشِر إلى النقطة في متصفح، فهي تذكر السبب.",
+                ),
+              ],
+              [
+                L(
+                  "The bar next to the dot stays red or orange",
+                  "Het balkje naast de stip blijft rood of oranje",
+                  "الشريط بجانب النقطة يبقى أحمر أو برتقاليًا",
+                ),
+                L(
+                  "The microphone hears too little: check that it is on and loud enough, or choose another one in the builder.",
+                  "De microfoon hoort te weinig: kijk of hij aan staat en hard genoeg, of kies een andere in de bouwer.",
+                  "الميكروفون يلتقط صوتًا قليلًا: تأكد أنه يعمل وأن صوته مرتفع بما يكفي، أو اختر ميكروفونًا آخر عند إنشاء الشاشة.",
                 ),
               ],
               [

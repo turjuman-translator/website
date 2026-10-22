@@ -78,11 +78,7 @@ function captionStage(lang: "en" | "nl"): string {
   ];
   return (
     '<div class="blk-root pos-bottom bg-panel show-target quran-ar"><div class="blk-panel">' +
-    `<div class="blk-scroll"><div class="blk-list">${blocks.join("")}</div></div>` +
-    // The live page's listening row: invisible while nobody speaks, but it takes its place.
-    '<div class="blk-listen" aria-hidden="true"><span class="blk-dots"><i class="blk-dot"></i>' +
-    '<i class="blk-dot"></i><i class="blk-dot"></i></span><span class="blk-partial-box">' +
-    '<span class="blk-partial" dir="rtl" lang="ar"></span></span></div></div></div>' +
+    `<div class="blk-scroll"><div class="blk-list">${blocks.join("")}</div></div></div></div>` +
     '<div class="cap-root pos-bottom bg-band" hidden>' +
     '<div class="cap-block cap-source" lang="ar" dir="rtl"><div class="cap-window">' +
     `<div class="cap-text is-arabic"><span class="cap-seg">${escapeHtml(hadith.ar)}</span></div></div></div>` +

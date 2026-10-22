@@ -35,7 +35,6 @@ export function captionStyleDemo(root: HTMLElement): void {
   const stage = find(".capdemo-stage", HTMLElement, frame);
   const blocks = find(".blk-root", HTMLElement, stage);
   const scroller = find(".blk-scroll", HTMLElement, blocks);
-  const listen = find(".blk-listen", HTMLElement, blocks);
   const rollup = find(".cap-root", HTMLElement, stage);
   const source = find(".cap-source", HTMLElement, rollup);
   const target = find(".cap-translation", HTMLElement, rollup);
@@ -66,7 +65,6 @@ export function captionStyleDemo(root: HTMLElement): void {
     blocks.hidden = o.layout !== "blocks";
     rollup.hidden = o.layout !== "rollup";
     blocks.className = `blk-root pos-${o.pos} bg-${o.bg} show-${o.show}${o.quranArabic ? " quran-ar" : ""}`;
-    listen.classList.toggle("with-partial", o.partial);
     for (const q of findAll(".blk-quran", HTMLElement, blocks)) {
       q.classList.toggle("has-accent", o.quranAccent);
     }
