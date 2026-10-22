@@ -76,9 +76,9 @@ export const howItWorks: DocPage = {
         },
         {
           p: L(
-            "After 30 seconds of silence the connection to Soniox closes, so long pauses cost nothing.",
-            "Na 30 seconden stilte sluit de verbinding met Soniox, dus lange pauzes kosten niets.",
-            "يُغلق الاتصال بـ Soniox بعد 30 ثانية من الصمت، فلا تكلّف فترات التوقف الطويلة شيئًا.",
+            "A screen sends all sound to Soniox, soft speech too, while it is on: switch it off after the khutbah. With Send all sound off, only clear speech goes, and the connection closes after 30 seconds of silence.",
+            "Een scherm stuurt al het geluid naar Soniox, ook zachte spraak, zolang het aan staat: zet het na de khutbah uit. Met Al het geluid doorsturen uit gaat alleen duidelijke spraak door, en sluit de verbinding na 30 seconden stilte.",
+            "ترسل الشاشة كل الصوت إلى Soniox، حتى الكلام الخافت، ما دامت تعمل: أطفئها بعد الخطبة. وعند إيقاف «إرسال كل الصوت» لا يُرسل إلا الكلام الواضح، ويُغلق الاتصال بعد 30 ثانية من الصمت.",
           ),
         },
       ],
@@ -188,9 +188,9 @@ export const howItWorks: DocPage = {
               "يحاسب Soniox حساب المسجد نفسه مباشرة: نحو 0.12 دولار للساعة مقابل الكلام، ونحو 0.06 دولار للساعة مقابل الترجمة، بحسب أسعاره المعلنة.",
             ),
             L(
-              "Silence longer than 30 seconds costs nothing.",
-              "Stilte van meer dan 30 seconden kost niets.",
-              "الصمت الذي يزيد على 30 ثانية لا يكلّف شيئًا.",
+              "Soniox bills while a screen is on. With Send all sound off, silence longer than 30 seconds costs nothing.",
+              "Soniox rekent zolang een scherm aan staat. Met Al het geluid doorsturen uit kost stilte van meer dan 30 seconden niets.",
+              "يحاسب Soniox ما دامت الشاشة تعمل. وعند إيقاف «إرسال كل الصوت» لا يكلّف الصمت الذي يزيد على 30 ثانية شيئًا.",
             ),
             L(
               "The app shows this month's usage, with an estimate of the cost.",

@@ -208,9 +208,9 @@ export const showOnAScreen: DocPage = {
         {
           ul: [
             L(
-              "A new screen starts off: switch it on in the app before the khutbah.",
-              "Een nieuw scherm staat uit: zet het vóór de khutbah aan in de app.",
-              "تبدأ الشاشة الجديدة متوقفة: شغّلها من التطبيق قبل الخطبة.",
+              "A new screen starts off: switch it on in the app before the khutbah, and off after it (Soniox bills while it is on).",
+              "Een nieuw scherm staat uit: zet het vóór de khutbah aan in de app, en daarna weer uit (Soniox rekent zolang het aan staat).",
+              "تبدأ الشاشة الجديدة متوقفة: شغّلها من التطبيق قبل الخطبة، وأطفئها بعدها (يحاسب Soniox ما دامت تعمل).",
             ),
             L(
               "**Athan**, **Iqama**, **Salah** and **Stop** show or end a prayer card by hand. Turjuman also recognises them by itself.",
