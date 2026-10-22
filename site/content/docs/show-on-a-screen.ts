@@ -213,6 +213,11 @@ export const showOnAScreen: DocPage = {
               "تبدأ الشاشة الجديدة متوقفة: شغّلها من التطبيق قبل الخطبة، وأطفئها بعدها (يحاسب Soniox ما دامت تعمل).",
             ),
             L(
+              "**Send all sound** (on by default) sends soft speech too. Off: only clear speech, and nothing while it is quiet.",
+              "**Al het geluid doorsturen** (standaard aan) stuurt ook zachte spraak door. Uit: alleen duidelijke spraak, en niets zolang het stil is.",
+              "يرسل **إرسال كل الصوت** (مفعّل افتراضيًا) الكلام الخافت أيضًا. وعند إيقافه لا يُرسل إلا الكلام الواضح، ولا شيء أثناء الهدوء.",
+            ),
+            L(
               "**Athan**, **Iqama**, **Salah** and **Stop** show or end a prayer card by hand. Turjuman also recognises them by itself.",
               "**Athan**, **Iqama**, **Salah** en **Stop** tonen of beëindigen een gebedskaart met de hand. Turjuman herkent ze ook vanzelf.",
               "تعرض أزرار **الأذان** و**الإقامة** و**الصلاة** بطاقة الصلاة يدويًا، وينهيها زر **إيقاف**. ويتعرّف عليها ترجمان تلقائيًا أيضًا.",
